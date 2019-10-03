@@ -1,0 +1,113 @@
+     @font-face {
+       font-family: gameFont;
+       src: url('assets/fonts/casual.otf');
+       font-weight: 400;
+       font-weight: normal;
+     }
+
+     .buttonCls {
+       background: #733012;
+       border-radius: 5px;
+       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+       color: #0CCB52;
+       width: 30%;
+       height: 60px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 40px;
+       margin: 10px;
+       transition-duration: 0.4s;
+       font-weight: bold;
+       min-width: 280px;
+     }
+
+     .buttonCls:hover {
+       background: #C7993C;
+     }
+
+     .bodyCls {
+       background-color: #5d260e;
+       margin: 0
+     }
+
+     .header {
+       color: #00ffc1;
+       font-size: 40px;
+       text-align: center;
+       width: 80%;
+       margin: 10px 10% 10px 10%;
+       font-weight: bold;
+     }
+
+     .header2 {
+      color: #00cc99;
+      font-size: 32px;
+      text-align: left;
+      width: 80%;
+      margin: 10px 10% 10px 10%;
+      font-weight: bold;
+    }
+
+     .text {
+       color: #4DF289;
+       font-size: 24px;
+       text-align: left;
+       padding-top: 10px;
+     }
+
+     .imageCls {
+       width: 1000px
+     }
+
+     .smallImageCls {
+       width: 400px;
+       height: 200px;
+     }
+
+     .screenshot {
+       margin: 10px 10% 10px 10%;
+       width: 400px;
+       height: 250px;
+       margin: 10px;
+       padding: 7px;
+       border: 1px solid #008a77;
+       display: inline;
+     }
+
+     .screenshot:hover {
+       padding: 0px;
+       border: 7px solid #008a77;
+       display: inline;
+       margin: 10px;
+     }
+
+     .centerDiv {
+       text-align: center;
+       width: 80%;
+       margin: 0px 10% 0px 10%
+     }
+
+     .list {
+       text-align: left;
+       color: #4DF289;
+       font-size: 24px;
+     }
+     .list li {
+      padding-top: 10px;
+     }
+
+     input[type=text] {
+       width: 40%;
+       padding: 5px 20px;
+       margin: 4px 0;
+       box-sizing: border-box;
+       background-color: rgb(153, 238, 160);
+       font-size: 16px;
+       font-family: gameFont;
+       color: #EA7100;
+     }
+
+     input[type=text]:focus {
+       background-color: lightblue;
+     }

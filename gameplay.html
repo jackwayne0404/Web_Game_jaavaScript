@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Fruit and Frags</title>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="bodyCls">
+  <div style="text-align: center; width: 80%; margin: 0px 10% 0px 10%">
+    <form>
+      <p style="color:#4DF289; font-size:24px; margin: 5px 20px;">
+        First player name: <input type="text" name="player1Name" value="Player" size="25" maxlength="50" />
+      </p>
+      <p style="color:#4DF289; font-size:24px; margin: 5px 20px">
+        Second player name: <input type="text" name="player2Name" value="Opponent" size="25" maxlength="50" />
+      </p>
+    </form>
+  </div>
+  <div style="font-family:gameFont; position:absolute; left:-1000px; visibility:hidden;">.</div>
+
+  <script type="text/javascript" src="js/gameplay/baseObj.js"></script>
+  <script type="text/javascript" src="js/gameplay/fruit.js"></script>
+  <script type="text/javascript" src="js/gameplay/bomb.js"></script>
+  <script type="text/javascript" src="js/gameplay/spawner.js"></script>
+  <script type="text/javascript" src="js/gameplay/button.js"></script>
+  <script type="text/javascript" src="js/scenes/backgroundScene.js"></script>
+  <script type="text/javascript" src="js/scenes/loadingScene.js"></script>
+  <script type="text/javascript" src="js/scenes/mainMenuScene.js"></script>
+  <script type="text/javascript" src="js/scenes/topScoresMenu.js"></script>
+  <script type="text/javascript" src="js/scenes/optionsMenu.js"></script>
+  <script type="text/javascript" src="js/scenes/gameplayBaseScene.js"></script>
+  <script type="text/javascript" src="js/scenes/singlePlayerScene.js"></script>
+  <script type="text/javascript" src="js/scenes/twoPlayersScene.js"></script>
+  <script type="text/javascript" src="js/gameConfig.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+  <div id="phaser-game"></div>
+
+  <div style="text-align: center; width: 80%; margin: 0px 10% 0px 10%">
+    <button onclick="location.href='/'" type="button" class="buttonCls">Back</button>
+  </div>
+</body>
+
+</html>

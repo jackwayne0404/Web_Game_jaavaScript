@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Fruit and Frags</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body class="bodyCls">
+  <img src="images/game_promo.png" alt="" width="100%" , height="200px" />
+  <div class="centerDiv">
+    <h1 class="header">Game sequence</h1>
+    <p class="text">The game starts from main.js, this file just starts phaser with Phaser GameConfig configuration from
+      gameConfig.js file. This config contain information about game resolution, input configuration, a list of scenes
+      which are used is the game code. Phaser configuration also contains background color and physics configuration.
+      loadingScene - is a first scene which is loaded after game start. This scene declares which resources will be
+      loaded in 'prepare()' method.<br><br>
+      In 'create' method the scene creates a global music sound and loads mainMenuScene. In this scene player can start
+      to play in single or multi player mode.
+      Player also could enter options or top scores menu. Players could enter their names in a top of page in HTML
+      textbox input fields. To exit the game player could close the web page or press 'Back' button in the bottom of the
+      page.<br><br>
+      In gameplay mode player could pause the game. In pause menu it is allowed to exit to main menu, restart the game
+      or resume.
+      If player/or both in two players mode lost their lifes, the game automatically paused and the game can't be resumed.
+    </p>
+    <h1 class="header">Used 3rd party scripts and tools</h1>
+    <ul class="list">
+      <li>The games uses Phaser 3 javascript engine to render images, interact with input, loading sound and
+        for internal physics.</li>
+      <li>Node.Js and express module used as backend.</li>
+      <li>lowdb is a small local JSON database powered by Lodash. This library is used as player scores
+        database.</li>
+    </ul>
+    <h1 class="header">Class diagram</h1>
+    <p class="text">The image below demostrates class diagram of project</p>
+    <img src="images/classDiagramm.png" alt="" class="imageCls" />
+    <p class="text">All game classes may be splitted into 2 groups:</p>
+    <ul class="list">
+      <li>Scene classes - handles scene logic(create UI and handle input).</li>
+      <li>Game play classes - dynamic objects in the game(like fruits and bombs)</li>
+    </ul>
+    <h2 class="header2">Game classes:</h2>
+    <ul class="list">
+      <li>basicObj - a sliceable object, hanldes touches by player and calls virtual method slice.</li>
+      <li>fruitObj - a fruit - increases player score on slice and splits into two parts. If fruit will be invisible,
+        lives count of player is decreased.</li>
+      <li>bombObj - a bomb - decreases player lives count on slice.</li>
+      <li>spawner - a class attended to spawn bombs and fruits from bottom of the screen.</li>
+      <li>button - a class representing UI button, consist of Phaser image and Phaser text.
+        handles user input and calls user defined callback on button press.
+      </li>
+    </ul>
+    <h2 class="header2">Scene classes:</h2>
+    <ul class="list">
+      <li>loadingScene - the first scene loaded after the game start, does not based on backgroundScene.
+        this scene is just loads resouces and starts mainMenuScene.
+      </li>
+      <li>backgroundScene - is the base class for the all scenes exluding loadingScene. This class is just creates a
+        background image in create() virtual method of Phaser.Scene.
+      </li>
+      <li>mainMenuScene - class for the main menu, this class creates buttons for other scenes transitions(options menu,
+        top scores menu, single player scene and 2 players scene).
+        this class is also creates a button to make game fullscreen.
+      </li>
+      <li>optionsMenu - class for the options menu, this class creates button 'back' to return to main menu and provides
+        a player options to sound off or sound on and option to control the difficulty of the game.
+      </li>
+      <li>topScoresMenu - class for the top scores menu. When this scene starts browser sends a get request to the
+        server. Node.JS responses with the sorted top scored players. After the response scene shows top players list.
+        The scene has 'Back' button to return to main menu
+      </li>
+      <li>gameplayBaseScene - The base functional scene class for gameplay scenes, based on backgroundScene. This scene
+        has methods to create a
+        player structure(name, lives count and score), method to send player score to the server. This class created UI
+        buttons and pointer effect following a finger or a mouse. The class also controls the state of the gameplay
+        scene. State could be inGame, paused and gameover. Different buttons are shown on the screen depending on the
+        game state. gameplayBaseScene starts 2 timers, one for a fruit spawn and the second is for bomb. Time depends on
+        game difficulty configuration
+      </li>
+      <li>singlePlayerScene - This class is based on gameplayBaseScene. The scene creates a single instance of player
+        structure and a single pointer(only mouse or single touch). Scene also creates an instance of spawner class. The
+        class implements virtual callbacks for the timers to spawn fruits and bombs. When the player is lost all his
+        lives the scene shows game over menu. The scene pushes player score to the server database after game over.
+      </li>
+      <li>twoPlayersScene - the scene is based on gameplayBaseScene The scene creates two insances of player structure
+        structure 2 pointers, one for each player. Each player has own spanwer. Class implements virtual callbacks for
+        the timers to spawn fruits and bombs. When the player lost all his lives he stops to get score and spawner does
+        not spawn anything on his side.
+        When both of players got 0 lives, the game pauses and shows game over menu. The scene pushes both players scores
+        to the server database after game over.
+      </li>
+    </ul>
+    <h1 class="header">Transition diagram</h1>
+    <p class="text">The image below demonstrates transition diagram between scenes</p>
+    <img src="images/transitionDiagramm.png" alt="" class="imageCls" />
+    <h1 class="header">Transitions</h1>
+    <ul class="list">
+      <li>loadingScene is loaded right after the game start and automatically transit to mainMenuScene</li>
+      <li>mainMenuScene - can transit player to singlePlayerScene by pressing '1 Player' button</li>
+      <li>mainMenuScene - can transit player to twoPlayersScene by pressing '2 Players' button</li>
+      <li>mainMenuScene - can transit player to optionsMenu by pressing 'Options' button</li>
+      <li>mainMenuScene - can transit player to topScoresMenu by pressing 'Top Scores' button</li>
+      <li>singlePlayerScene - can transit player to mainMenuScene by pressing 'Exit' button in pause menu</li>
+      <li>twoPlayersScene - can transit player to mainMenuScene by pressing 'Exit' button in pause menu</li>
+      <li>optionsMenu - can transit player to mainMenuScene by pressing 'Back' button</li>
+      <li>twoPlayersScene - can transit player to mainMenuScene by pressing 'Back' button</li>
+    </ul>
+
+    <h1 class="header">Database</h1>
+    <p class="text">Fruit and Frags stores only player name and his score</p>
+    <img src="images/db.diagramm.png" alt="" class="smallImageCls" />
+    <p class="text">Game server creates or opens and reads db.json file. This is database file for lowdb in JSON
+      format. The server has 2 requests that change database:</p>
+    <ul class="list">
+      <li>get - '/top_scores/:count' on this request server responses with top 'count' scores</li>
+      <li>post - '/add_score' - with a player name and player score in body in JSON format. On this request server
+        places new score to the database and saves db.json file</li>
+    </ul>
+
+    <h1 class="header">Game structures</h1>
+    <p class="text">The image below demostrates constant Phaser 3 settings</p>
+    <img src="images/phaser_config.png" alt="" />
+    <br><br>
+    <p class="text">The image below demostrates constant game configuration</p>
+    <img src="images/game_structure_game_config.png" alt="" />
+    <br><br>
+    <p class="text">The image below demostrates player structure</p>
+    <img src="images/player_config.png" alt="" />
+    <br><br>
+    <p class="text">The image below demostrates game settings, difficulty could be changed in optionsMenu</p>
+    <img src="images/game_settings.png" alt=""/>
+    <br><br>
+  </div>
+
+
+
+  <div class="centerDiv">
+    <button onclick="location.href='/'" type="button" class="buttonCls">Back</button>
+  </div>
+</body>
+
+</html>

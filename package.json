@@ -1,0 +1,13 @@
+{
+  "name": "node-js_web_server",
+  "version": "0.0.0",
+  "description": "NodeJsServer",
+  "main": "index.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "lowdb": "^1.0.0"
+  }
+}
